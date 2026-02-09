@@ -1,0 +1,52 @@
+meta {
+  name: Get All (GET)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/courses/
+  body: none
+  auth: inherit
+}
+
+vars:pre-request {
+  baseUrl: http://localhost:8000
+}
+
+example {
+  name: 200 Response
+  description: Successful Response
+  
+  request: {
+    url: {{baseUrl}}/courses/
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {
+            "id": 0,
+            "title": "",
+            "description": "",
+            "created_at": "",
+            "updated_at": ""
+          }
+        ]
+      '''
+    }
+  }
+}
